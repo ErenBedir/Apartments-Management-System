@@ -77,9 +77,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Binaları getirme
+// Binaları ve daireleri getirme
 $buildings = mysqli_query($conn, "SELECT * FROM buildings");
 $apartments = mysqli_query($conn, "SELECT * FROM apartments");
+$selected_apartment = null;
+
+if (isset($_GET['edit_apartment_id'])) {
+    $edit_apartment_id = $_GET['edit_apartment_id'];
+    $selected_apartment_query = mysqli_query($conn, "SELECT * FROM apartments WHERE id='$edit_apartment_id'");
+    $selected_apartment = mysqli_fetch_assoc($selected_apartment_query);
+}
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +96,25 @@ $apartments = mysqli_query($conn, "SELECT * FROM apartments");
     <title>Yönetim Paneli</title>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .back {
+            background-color: #28a745;
+            color: white;
+        }
+        .logout {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -142,24 +168,27 @@ $apartments = mysqli_query($conn, "SELECT * FROM apartments");
                 <div class="accordion-content">
                     <form method="post">
                         <label for="apartment">Daire Seç:</label>
-                        <select id="apartment" name="apartment_id">
+                        <select id="apartment" name="apartment_id" onchange="location = this.value;">
+                            <option value="">-- Daire Seç --</option>
                             <?php while ($apartment = mysqli_fetch_assoc($apartments)): ?>
-                                <option value="<?= $apartment['id'] ?>"><?= $apartment['name'] ?></option>
+                                <option value="admin_panel.php?edit_apartment_id=<?= $apartment['id'] ?>" <?= isset($selected_apartment) && $selected_apartment['id'] == $apartment['id'] ? 'selected' : '' ?>><?= $apartment['name'] ?></option>
                             <?php endwhile; ?>
                         </select>
-                        <label for="apartment_name">Daire Adı:</label>
-                        <input type="text" id="apartment_name" name="apartment_name" required>
-                        <label for="electricity_subscription">Elektrik Abonelik No:</label>
-                        <input type="text" id="electricity_subscription" name="electricity_subscription" required>
-                        <label for="water_subscription">Su Abonelik No:</label>
-                        <input type="text" id="water_subscription" name="water_subscription" required>
-                        <label for="gas_subscription">Doğalgaz Abonelik No:</label>
-                        <input type="text" id="gas_subscription" name="gas_subscription" required>
-                        <label for="tenant_name">Kiracı Adı:</label>
-                        <input type="text" id="tenant_name" name="tenant_name" required>
-                        <label for="tenant_phone">Kiracı Telefon No:</label>
-                        <input type="text" id="tenant_phone" name="tenant_phone" required>
-                        <button type="submit" name="edit_apartment">Güncelle</button>
+                        <?php if ($selected_apartment): ?>
+                            <label for="apartment_name">Daire Adı:</label>
+                            <input type="text" id="apartment_name" name="apartment_name" value="<?= $selected_apartment['name'] ?>" required>
+                            <label for="electricity_subscription">Elektrik Abonelik No:</label>
+                            <input type="text" id="electricity_subscription" name="electricity_subscription" value="<?= $selected_apartment['electricity_subscription'] ?>" required>
+                            <label for="water_subscription">Su Abonelik No:</label>
+                            <input type="text" id="water_subscription" name="water_subscription" value="<?= $selected_apartment['water_subscription'] ?>" required>
+                            <label for="gas_subscription">Doğalgaz Abonelik No:</label>
+                            <input type="text" id="gas_subscription" name="gas_subscription" value="<?= $selected_apartment['gas_subscription'] ?>" required>
+                            <label for="tenant_name">Kiracı Adı:</label>
+                            <input type="text" id="tenant_name" name="tenant_name" value="<?= $selected_apartment['tenant_name'] ?>" required>
+                            <label for="tenant_phone">Kiracı Telefon No:</label>
+                            <input type="text" id="tenant_phone" name="tenant_phone" value="<?= $selected_apartment['tenant_phone'] ?>" required>
+                            <button type="submit" name="edit_apartment">Güncelle</button>
+                        <?php endif; ?>
                     </form>
                 </div>
             </div>
@@ -206,6 +235,10 @@ $apartments = mysqli_query($conn, "SELECT * FROM apartments");
                 </div>
             </div>
         </div>
+        
+        <!-- Geri Dön ve Çıkış Yap Butonları -->
+        <a href="dashboard.php" class="button back">Geri Dön</a>
+        <a href="logout.php" class="button logout">Çıkış Yap</a>
     </div>
 
     <!-- JavaScript -->
