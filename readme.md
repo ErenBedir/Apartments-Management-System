@@ -31,5 +31,6 @@ NOT: Proje tamamen iskelet (temel) düzeydedir. geliştirmeler ile kendinize gö
 
 # Yapılacaklar
 
-Henüz ilk versiyonda olduğundan eksikleri ve hataları bulunacaktır. bunları her seferinde güncelleyeceğim.
-ek olarak, admin panelde değişiklik olacak.
+[ ] Henüz ilk versiyonda olduğundan eksikleri ve hataları bulunacaktır. bunları her seferinde güncelleyeceğim.
+[ ] ek olarak, admin panelde değişiklik olacak.
+[ ] Fatura yazdırma henüz test ediliyor. Yakında çalışır versiyon eklenecek.
