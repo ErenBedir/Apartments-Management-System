@@ -38,11 +38,30 @@ $buildings = mysqli_query($conn, "SELECT * FROM buildings");
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-        <link rel="icon" href="https://apart.nirvanahost.xyz/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://apart.nirvanahost.xyz/favicon.ico" type="image/x-icon" />
     <meta charset="UTF-8">
     <title>Bedir Grup</title>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .admin-panel {
+            background-color: #007bff;
+            color: white;
+        }
+        .logout {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -57,7 +76,10 @@ $buildings = mysqli_query($conn, "SELECT * FROM buildings");
             </select>
             <button type="submit" name="select_building">Seç</button>
         </form>
-
+        <?php if ($_SESSION['role'] == 'superadmin'): ?>
+            <a href="admin_panel.php" class="button admin-panel">Yönetim Paneli</a>
+        <?php endif; ?>
+        <a href="logout.php" class="button logout">Çıkış Yap</a>
         <?php if (isset($_SESSION['building_id'])): ?>
             <?php
             $building_id = $_SESSION['building_id'];
@@ -87,7 +109,6 @@ $buildings = mysqli_query($conn, "SELECT * FROM buildings");
                                 ?>
                             </td>
                         </tr>
-
                     <?php endwhile; ?>
                 </table>
             </div>
@@ -95,4 +116,3 @@ $buildings = mysqli_query($conn, "SELECT * FROM buildings");
     </div>
 </body>
 </html>
-
