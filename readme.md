@@ -28,6 +28,10 @@ Project Version: V0.1
 
 NOT: Proje tamamen iskelet (temel) düzeydedir. geliştirmeler ile kendinize göre ayarlayabilirsiniz. farklı fonksiyonlar ile daha gelişmiş hale getirebilirsiniz.
 
+ # Notlar
+
+ fatura yazdırabilmek için dompdf eklentisi kurulu olmalıdır.
+ 
 
 # Yapılacaklar
 
