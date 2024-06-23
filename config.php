@@ -5,9 +5,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $servername = "localhost";
-$username = "etrfzczm_eren";
-$password = "Eren5503.";
-$dbname = "etrfzczm_apart2";
+$username = "";
+$password = "";
+$dbname = "";
 
 // Veritabanı bağlantısı
 $conn = mysqli_connect($servername, $username, $password, $dbname);
