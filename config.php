@@ -17,6 +17,8 @@ if (!$conn) {
 }
 
 // Süperadmin kullanıcısını kontrol et ve yoksa ekle
+// Buraları kafanıza göre ekleyin. setup kurmadığım için gereksinim duymadım.
+
 $check_superadmin_query = "SELECT * FROM users WHERE username='superadmin'";
 $result = mysqli_query($conn, $check_superadmin_query);
 
