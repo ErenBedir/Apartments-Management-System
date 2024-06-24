@@ -4,7 +4,7 @@
 - Superadmin bina ve daire ekleyebilir.
 - admin dairelerde oturan kiracının adını ve numarasını güncelleyebilir.
 - admin kira ödemesine dair giriş yapabilir.
-- kiralar alındıkları günden 1 ay sonra sıfırlanır.
+- kiralar alındıkları günden 1 ay sonra `ödenmedi` olarak gözükür.
 - dairelere tıklandığında dairenin su, elektrik ve doğalgaz abonelik numaraları ayrıca ödeme geçmişi görünür.
 
 Arayüz ve tasarım basit ve anlaşılabilir olup, web sitesinin mobil cihazlarda görünümünü rahat kılmak adına css dosyası düzenlenmiştir.
