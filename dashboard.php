@@ -38,7 +38,7 @@ $buildings = mysqli_query($conn, "SELECT * FROM buildings");
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <link rel="icon" href="https://apart.nirvanahost.xyz/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="https://adres.com/favicon.ico" type="image/x-icon" />
     <meta charset="UTF-8">
     <title>Bedir Grup</title>
     <link rel="stylesheet" href="styles.css">
